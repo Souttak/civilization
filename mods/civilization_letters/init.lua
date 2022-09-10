@@ -1,59 +1,65 @@
 local prefix = "civilization_letters:";
 
+-- Paper
+
 minetest.register_craftitem(prefix .. "paper", {
   description = "Paper",
   inventory_image = "civilization_letters_paper.png"
 });
 
--- TODO: Ask about aliases to the community, as the engine do not do it.
-minetest.register_alias("paper", prefix .. "paper");
-
 minetest.register_craft({
   type = "shaped",
   output = prefix .. "paper " .. 5,
   recipe = {
     {"", "", ""},
-    {"default:tree", "default:tree", "default:tree"},
+    {"group:tree", "group:tree", "group:tree"},
     {"", "", ""}
   }
 });
 
-minetest.register_craft({
-  type = "shaped",
-  output = prefix .. "paper " .. 5,
-  recipe = {
-    {"", "", ""},
-    {"default:jungletree", "default:jungletree", "default:jungletree"},
-    {"", "", ""}
-  }
+-- Ashes
+
+minetest.register_craftitem(prefix .. "ashes", {
+  description = "Ashes",
+  inventory_image = "civilization_letters_ashes.png"
 });
 
 minetest.register_craft({
-  type = "shaped",
-  output = prefix .. "paper " .. 5,
-  recipe = {
-    {"", "", ""},
-    {"default:pine_tree", "default:pine_tree", "default:pine_tree"},
-    {"", "", ""}
-  }
+  type = "cooking",
+  output = prefix .. "ashes " .. 1,
+  recipe = "group:tree",
+  cooktime = 10
+});
+
+-- Ink
+
+minetest.register_craftitem(prefix .. "ink", {
+  description = "Ink",
+  inventory_image = "civilization_letters_ink.png"
 });
 
 minetest.register_craft({
-  type = "shaped",
-  output = prefix .. "paper " .. 5,
+  type = "shapeless",
+  output = prefix .. "ink " ..1,
   recipe = {
-    {"", "", ""},
-    {"default:acacia_tree", "default:acacia_tree", "default:acacia_tree"},
-    {"", "", ""}
-  }
+    prefix .. "ashes",
+    "bucket:bucket_water"
+  } 
 });
 
 minetest.register_craft({
-  type = "shaped",
-  output = prefix .. "paper " .. 5,
+  type = "shapeless",
+  output = prefix .. "ink " ..1,
   recipe = {
-    {"", "", ""},
-    {"default:aspen_tree", "default:aspen_tree", "default:aspen_tree"},
-    {"", "", ""}
-  }
+    prefix .. "ashes",
+    "bucket:bucket_river_water"
+  } 
 });
+
+-- Letter
+--[[
+minetest.register_craftitem(prefix .. "letter", {
+  description = "Letter",
+  inventory_image = "civilization_letters_ashes.png"
+});
+]]--
